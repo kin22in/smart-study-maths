@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order the Story Events</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #ff6b88;
+            font-size: 2.2em;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #5b92e5;
+            margin-top: 30px;
+        }
+        .story-section {
+            background-color: #fffacd;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border: 3px dashed #ff9e4f;
+        }
+        .instructions {
+            background-color: #e1f5fe;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 1.1em;
+        }
+        .drag-drop-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 0;
+        }
+        .events-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+        .event {
+            background-color: #ffccbc;
+            border: 2px solid #ff9e80;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 5px;
+            cursor: grab;
+            width: 200px;
+            text-align: center;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .event:hover {
+            transform: scale(1.05);
+        }
+        .event-icon {
+            display: block;
+            height: 60px;
+            margin: 0 auto 10px auto;
+        }
+        .drop-zones-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 600px;
+        }
+        .drop-zone {
+            background-color: #e0f7fa;
+            border: 2px dashed #4fc3f7;
+            border-radius: 10px;
+            padding: 15px;
+            min-height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .drop-zone.highlight {
+            background-color: #bbdefb;
+            border: 2px solid #64b5f6;
+        }
+        .number-badge {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            background-color: #ff6b88;
+            color: white;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+        .check-btn {
+            display: block;
+            width: 200px;
+            height: 60px;
+            margin: 30px auto;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.5em;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            box-shadow: 0 5px #388E3C;
+            transition: all 0.3s;
+        }
+        .check-btn:hover {
+            background-color: #45a049;
+            transform: translateY(2px);
+            box-shadow: 0 3px #388E3C;
+        }
+        .check-btn:active {
+            transform: translateY(5px);
+            box-shadow: none;
+        }
+        .result {
+            text-align: center;
+            font-size: 1.5em;
+            margin-top: 20px;
+            display: none;
+        }
+        .reset-btn {
+            display: block;
+            width: 150px;
+            height: 40px;
+            margin: 20px auto;
+            background-color: #ff9800;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            box-shadow: 0 3px #e65100;
+            transition: all 0.3s;
+        }
+        .reset-btn:hover {
+            background-color: #fb8c00;
+            transform: translateY(2px);
+            box-shadow: 0 1px #e65100;
+        }
+        .celebration {
+            text-align: center;
+            margin-top: 20px;
+            display: none;
+        }
+        .character {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 100px;
+            transition: transform 0.5s;
+        }
+        .character:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Order the Story Events</h1>
+        
+        <div class="instructions">
+            <p><strong>Instructions:</strong> Read the story carefully. Then drag and drop the events in the correct order they happened in the story.</p>
+        </div>
+        
+        <div class="story-section">
+            <h2>The Little Red Bird</h2>
+            
+            <svg width="150" height="120" viewBox="0 0 150 120" style="float: right; margin: 0 0 10px 10px;">
+                <!-- Sun -->
+                <circle cx="120" cy="30" r="20" fill="#FFD700" />
+                <circle cx="120" cy="30" r="30" fill="#FFD700" opacity="0.3" />
+                <!-- Tree -->
+                <rect x="40" y="50" width="15" height="70" fill="#8B4513" />
+                <circle cx="48" cy="40" r="25" fill="#228B22" />
+                <!-- Bird -->
+                <ellipse cx="75" cy="50" rx="15" ry="10" fill="#FF6347" />
+                <circle cx="85" cy="45" r="3" fill="black" />
+                <path d="M 90 50 L 100 45" stroke="#FF6347" stroke-width="2" />
+                <path d="M 90 52 L 100 55" stroke="#FF6347" stroke-width="2" />
+                <path d="M 65 55 L 55 70" stroke="#FF6347" stroke-width="2" />
+                <path d="M 75 55 L 75 70" stroke="#FF6347" stroke-width="2" />
+                <path d="M 85 55 L 95 70" stroke="#FF6347" stroke-width="2" />
+            </svg>
+            
+            <p>Once there was a little red bird named Ruby. Ruby lived in a tall tree in the forest. She loved to sing beautiful songs every morning.</p>
+            
+            <p>One day, Ruby woke up feeling sad. She had lost her favorite shiny pebble that she kept in her nest.</p>
+            
+            <svg width="140" height="110" viewBox="0 0 140 110" style="float: left; margin: 10px 15px 10px 0;">
+                <!-- Ground -->
+                <rect x="0" y="90" width="140" height="20" fill="#8B4513" />
+                <!-- Grass -->
+                <path d="M 10 90 L 10 80 M 20 90 L 20 75 M 30 90 L 30 78 M 40 90 L 40 76 M 50 90 L 50 82" stroke="#228B22" stroke-width="3" />
+                <path d="M 70 90 L 70 80 M 80 90 L 80 75 M 90 90 L 90 78 M 100 90 L 100 76 M 110 90 L 110 82" stroke="#228B22" stroke-width="3" />
+                <!-- Fox -->
+                <ellipse cx="60" cy="90" rx="25" ry="10" fill="#D2691E" />
+                <circle cx="45" cy="75" r="15" fill="#D2691E" />
+                <path d="M 35 70 L 30 60" stroke="#D2691E" stroke-width="5" />
+                <path d="M 35 70 L 30 65" stroke="#D2691E" stroke-width="5" />
+                <circle cx="40" cy="70" r="2" fill="black" />
+                <path d="M 45 77 L 50 77" stroke="black" stroke-width="1" />
+                <!-- Pebble -->
+                <circle cx="100" cy="85" r="5" fill="#C0C0C0" />
+                <circle cx="100" cy="85" r="2" fill="white" opacity="0.5" />
+            </svg>
+            
+            <p>"Where could my pebble be?" Ruby asked her friends. The squirrel hadn't seen it. The rabbit hadn't seen it. No one knew where it was.</p>
+            
+            <p>Ruby flew down to the ground to look for her pebble. She searched near the big rock. She looked under the leaves. She checked by the small stream.</p>
+            
+            <p>When Ruby got to the fox's den, she saw something shiny. It was her pebble! But the fox was sleeping right next to it.</p>
+            
+            <p>Ruby had an idea. She sang her most beautiful song. The fox woke up and smiled at the lovely music.</p>
+            
+            <p>"Hello, Fox," said Ruby. "I think that's my pebble next to you. May I have it back, please?"</p>
+            
+            <p>The fox looked at the pebble. "Is this yours? I found it by the stream. I thought it was pretty, so I brought it home."</p>
+            
+            <p>"Yes, it's my special pebble. I use it to decorate my nest," explained Ruby.</p>
+            
+            <p>"You can have it back," said the fox kindly. "Thank you for your beautiful song."</p>
+            
+            <p>Ruby took her pebble and flew back to her nest. She was so happy to have her treasure again! From that day on, Ruby and the fox became good friends. Ruby would sing for the fox, and sometimes the fox would find pretty things to share with Ruby.</p>
+        </div>
+        
+        <div class="drag-drop-section">
+            <h2>Put the Story Events in Order</h2>
+            
+            <div class="events-container" id="events-container">
+                <div class="event" draggable="true" data-order="4">
+                    <svg class="event-icon" viewBox="0 0 100 60">
+                        <!-- Fox with pebble -->
+                        <ellipse cx="50" cy="50" rx="40" ry="10" fill="#D2691E" />
+                        <circle cx="30" cy="30" r="20" fill="#D2691E" />
+                        <circle cx="25" cy="25" r="3" fill="black" />
+                        <path d="M 30 35 L 35 35" stroke="black" stroke-width="1" />
+                        <circle cx="70" cy="45" r="5" fill="#C0C0C0" />
+                        <circle cx="70" cy="45" r="2" fill="white" opacity="0.5" />
+                    </svg>
+                    Ruby found her pebble at the fox's den.
+                </div>
+                <div class="event" draggable="true" data-order="1">
+                    <svg class="event-icon" viewBox="0 0 100 60">
+                        <!-- Bird in tree -->
+                        <rect x="40" y="20" width="10" height="40" fill="#8B4513" />
+                        <circle cx="45" cy="15" r="15" fill="#228B22" />
+                        <ellipse cx="60" cy="25" rx="10" ry="7" fill="#FF6347" />
+                        <circle cx="65" cy="22" r="2" fill="black" />
+                        <path d="M 65 25 L 70 20" stroke="#FF6347" stroke-width="2" />
+                    </svg>
+                    Ruby lived in a tall tree and loved to sing.
+                </div>
+                <div class="event" draggable="true" data-order="5">
+                    <svg class="event-icon" viewBox="0 0 100 60">
+                        <!-- Bird singing to fox -->
+                        <ellipse cx="25" cy="50" rx="25" ry="10" fill="#D2691E" />
+                        <circle cx="15" cy="35" r="15" fill="#D2691E" />
+                        <circle cx="10" cy="30" r="2" fill="black" />
+                        <ellipse cx="70" cy="30" rx="10" ry="7" fill="#FF6347" />
+                        <circle cx="75" cy="27" r="2" fill="black" />
+                        <path d="M 80 25 Q 85 20, 90 25 Q 95 30, 100 25" stroke="black" fill="none" stroke-width="1" stroke-dasharray="2,2" />
+                    </svg>
+                    Ruby sang a beautiful song for the fox.
+                </div>
+                <div class="event" draggable="true" data-order="3">
+                    <svg class="event-icon" viewBox="0 0 100 60">
+                        <!-- Bird searching -->
+                        <ellipse cx="30" cy="50" rx="10" ry="7" fill="#FF6347" />
+                        <circle cx="35" cy="47" r="2" fill="black" />
+                        <circle cx="50" cy="52" r="5" fill="#A0A0A0" />
+                        <rect x="60" y="45" width="20" height="10" fill="#A52A2A" />
+                        <path d="M 70 45 Q 75 35, 80 45" stroke="#A52A2A" fill="none" stroke-width="2" />
+                    </svg>
+                    Ruby searched near rocks, under leaves, and by the stream.
+                </div>
+                <div class="event" draggable="true" data-order="2">
+                    <svg class="event-icon" viewBox="0 0 100 60">
+                        <!-- Sad bird with empty nest -->
+                        <ellipse cx="50" cy="20" rx="20" ry="10" fill="#A52A2A" />
+                        <ellipse cx="50" cy="15" rx="15" ry="5" fill="#D2B48C" />
+                        <ellipse cx="50" cy="40" rx="10" ry="7" fill="#FF6347" />
+                        <circle cx="45" cy="37" r="2" fill="black" />
+                        <circle cx="55" cy="37" r="2" fill="black" />
+                        <path d="M 45 45 Q 50 43, 55 45" stroke="black" fill="none" stroke-width="1" />
+                    </svg>
+                    Ruby woke up sad because she lost her favorite shiny pebble.
+                </div>
+                <div class="event" draggable="true" data-order="6">
+                    <svg class="event-icon" viewBox="0 0 100 60">
+                        <!-- Fox giving pebble to bird -->
+                        <ellipse cx="30" cy="50" rx="25" ry="10" fill="#D2691E" />
+                        <circle cx="20" cy="35" r="15" fill="#D2691E" />
+                        <circle cx="15" cy="30" r="2" fill="black" />
+                        <ellipse cx="70" cy="30" rx="10" ry="7" fill="#FF6347" />
+                        <circle cx="75" cy="27" r="2" fill="black" />
+                        <circle cx="45" cy="40" r="5" fill="#C0C0C0" />
+                        <circle cx="45" cy="40" r="2" fill="white" opacity="0.5" />
+                    </svg>
+                    The fox kindly gave Ruby her pebble back.
+                </div>
+            </div>
+            
+            <div class="drop-zones-container">
+                <div class="drop-zone" data-position="1">
+                    <div class="number-badge">1</div>
+                    <p>First...</p>
+                </div>
+                <div class="drop-zone" data-position="2">
+                    <div class="number-badge">2</div>
+                    <p>Next...</p>
+                </div>
+                <div class="drop-zone" data-position="3">
+                    <div class="number-badge">3</div>
+                    <p>Then...</p>
+                </div>
+                <div class="drop-zone" data-position="4">
+                    <div class="number-badge">4</div>
+                    <p>After that...</p>
+                </div>
+                <div class="drop-zone" data-position="5">
+                    <div class="number-badge">5</div>
+                    <p>Next...</p>
+                </div>
+                <div class="drop-zone" data-position="6">
+                    <div class="number-badge">6</div>
+                    <p>Finally...</p>
+                </div>
+            </div>
+            
+            <button id="check-btn" class="check-btn">Check</button>
+            <button id="reset-btn" class="reset-btn">Try Again</button>
+            
+            <div id="result" class="result"></div>
+            
+            <div id="celebration" class="celebration">
+                <svg width="400" height="200" viewBox="0 0 400 200">
+                    <!-- Stars -->
+                    <circle cx="50" cy="50" r="5" fill="#FFD700">
+                        <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="100" cy="30" r="7" fill="#FF6347">
+                        <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="150" cy="70" r="6" fill="#32CD32">
+                        <animate attributeName="opacity" values="0;1;0" dur="2.5s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="200" cy="40" r="8" fill="#4169E1">
+                        <animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="250" cy="60" r="5" fill="#FF69B4">
+                        <animate attributeName="opacity" values="0;1;0" dur="2.2s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="300" cy="30" r="7" fill="#BA55D3">
+                        <animate attributeName="opacity" values="0;1;0" dur="1.7s" repeatCount="indefinite" />
+                    </circle>
+                    <circle cx="350" cy="50" r="6" fill="#FF8C00">
+                        <animate attributeName="opacity" values="0;1;0" dur="2.3s" repeatCount="indefinite" />
+                    </circle>
+                    
+                    <!-- Confetti -->
+                    <rect x="70" y="100" width="10" height="5" fill="#FF6347">
+                        <animate attributeName="y" from="100" to="200" dur="2s" repeatCount="indefinite" />
+                        <animate attributeName="x" from="70" to="90" dur="2s" repeatCount="indefinite" />
+                    </rect>
+                    <rect x="120" y="100" width="10" height="5" fill="#32CD32">
+                        <animate attributeName="y" from="100" to="200" dur="1.7s" repeatCount="indefinite" />
+                        <animate attributeName="x" from="120" to="100" dur="1.7s" repeatCount="indefinite" />
+                    </rect>
+                    <rect x="170" y="100" width="10" height="5" fill="#4169E1">
+                        <animate attributeName="y" from="100" to="200" dur="2.2s" repeatCount="indefinite" />
+                        <animate attributeName="x" from="170" to="190" dur="2.2s" repeatCount="indefinite" />
+                    </rect>
+                    <rect x="220" y="100" width="10" height="5" fill="#FF69B4">
+                        <animate attributeName="y" from="100" to="200" dur="1.8s" repeatCount="indefinite" />
+                        <animate attributeName="x" from="220" to="200" dur="1.8s" repeatCount="indefinite" />
+                    </rect>
+                    <rect x="270" y="100" width="10" height="5" fill="#BA55D3">
+                        <animate attributeName="y" from="100" to="200" dur="2.3s" repeatCount="indefinite" />
+                        <animate attributeName="x" from="270" to="290" dur="2.3s" repeatCount="indefinite" />
+                    </rect>
+                    <rect x="320" y="100" width="10" height="5" fill="#FF8C00">
+                        <animate attributeName="y" from="100" to="200" dur="1.9s" repeatCount="indefinite" />
+                        <animate attributeName="x" from="320" to="300" dur="1.9s" repeatCount="indefinite" />
+                    </rect>
+                </svg>
+            </div>
+        </div>
+    </div>
+    
+    <svg class="character" viewBox="0 0 100 120">
+        <ellipse cx="50" cy="110" rx="30" ry="10" fill="#e0e0e0" />
+        <circle cx="50" cy="50" r="30" fill="#FFB6C1" />
+        <circle cx="40" cy="40" r="5" fill="white" />
+        <circle cx="40" cy="40" r="2" fill="black" />
+        <circle cx="60" cy="40" r="5" fill="white" />
+        <circle cx="60" cy="40" r="2" fill="black" />
+        <path d="M 40 60 Q 50 70 60 60" stroke="black" stroke-width="2" fill="transparent" />
+        <rect x="40" y="80" width="20" height="30" fill="#FF69B4" />
+        <rect x="30" y="80" width="10" height="40" fill="#FF69B4" />
+        <rect x="60" y="80" width="10" height="40" fill="#FF69B4" />
+    </svg>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const events = document.querySelectorAll('.event');
+            const dropZones = document.querySelectorAll('.drop-zone');
+            const checkBtn = document.getElementById('check-btn');
+            const resetBtn = document.getElementById('reset-btn');
+            const resultDiv = document.getElementById('result');
+            const celebrationDiv = document.getElementById('celebration');
+            
+            let draggedItem = null;
+            
+            // Add event listeners for drag and drop
+            events.forEach(event => {
+                event.addEventListener('dragstart', dragStart);
+                event.addEventListener('dragend', dragEnd);
+            });
+            
+            dropZones.forEach(zone => {
+                zone.addEventListener('dragover', dragOver);
+                zone.addEventListener('dragenter', dragEnter);
+                zone.addEventListener('dragleave', dragLeave);
+                zone.addEventListener('drop', drop);
+            });
+            
+            function dragStart() {
+                draggedItem = this;
+                setTimeout(() => this.style.opacity = '0.5', 0);
+            }
+            
+            function dragEnd() {
+                setTimeout(() => this.style.opacity = '1', 0);
+                draggedItem = null;
+            }
+            
+            function dragOver(e) {
+                e.preventDefault();
+            }
+            
+            function dragEnter(e) {
+                e.preventDefault();
+                this.classList.add('highlight');
+            }
+            
+            function dragLeave() {
+                this.classList.remove('highlight');
+            }
+            
+            function drop() {
+                this.classList.remove('highlight');
+                
+                // Check if drop zone already has an item
+                if (this.querySelector('.event')) {
+                    // If so, return the item to its original container
+                    const currentItem = this.querySelector('.event');
+                    document.getElementById('events-container').appendChild(currentItem);
+                }
+                
+                // Add the dragged item to the drop zone
+                if (draggedItem) {
+                    this.appendChild(draggedItem);
+                }
+            }
+            
+            // Check if the order is correct
+            checkBtn.addEventListener('click', function() {
+                let correct = true;
+                let filled = true;
+                
+                dropZones.forEach(zone => {
+                    const event = zone.querySelector('.event');
+                    
+                    if (!event) {
+                        filled = false;
+                        return;
+                    }
+                    
+                    const actualPosition = zone.dataset.position;
+                    const correctPosition = event.dataset.order;
+                    
+                    if (actualPosition !== correctPosition) {
+                        correct = false;
+                    }
+                });
+                
+                resultDiv.style.display = 'block';
+                
+                if (!filled) {
+                    resultDiv.innerHTML = '<span style="color: #FF9800;">Please place all events in the boxes.</span>';
+                } else if (correct) {
+                    resultDiv.innerHTML = '<span style="color: #4CAF50; font-weight: bold;">Great job! You put the events in the right order! 🎉</span>';
+                    celebrationDiv.style.display = 'block';
+                    checkBtn.style.display = 'none';
+                    resetBtn.style.display = 'block';
+                } else {
+                    resultDiv.innerHTML = '<span style="color: #F44336;">Not quite right. Try again!</span>';
+                    resetBtn.style.display = 'block';
+                }
+                
+                // Scroll to result
+                resultDiv.scrollIntoView({ behavior: 'smooth' });
+            });
+            
+            // Reset functionality
+            resetBtn.addEventListener('click', function() {
+                // Return all events to container
+                events.forEach(event => {
+                    document.getElementById('events-container').appendChild(event);
+                });
+                
+                // Hide result and celebration
+                resultDiv.style.display = 'none';
+                celebrationDiv.style.display = 'none';
+                resetBtn.style.display = 'none';
+                checkBtn.style.display = 'block';
+            });
+            
+            // Initially hide reset button
+            resetBtn.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
