@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Rescue of Max - Worksheet</title>
+    <style>
+      p,
+      label {
+        font-size: 20px; /* Keep text readable */
+        line-height: 2; /* Increase line spacing */
+        word-spacing: 4px; /* Adjust space between words */
+      }
+      body {
+        font-family: "Comic Sans MS", Arial, sans-serif; /* Fun and readable */
+        margin: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 800px;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin: auto;
+      }
+
+      h1 {
+        font-size: 28px;
+        color: #ff5722; /* Fun orange color */
+      }
+
+      p {
+        font-size: 20px; /* Increase text size */
+        line-height: 1.8; /* More spacing for easy reading */
+      }
+
+      .story-box {
+        background: #fff3cd;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #ffeeba;
+        text-align: left;
+        font-size: 20px; /* Bigger text */
+        color: #5d4037;
+        line-height: 2;
+      }
+
+      .question {
+        margin: 15px 0;
+        padding: 15px;
+        background: #e1f5fe;
+        border-radius: 10px;
+        font-size: 20px;
+      }
+
+      label {
+        font-size: 18px;
+        display: block;
+        margin: 5px 0;
+      }
+
+      button {
+        margin-top: 15px;
+        padding: 12px 20px;
+        font-size: 18px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #388e3c;
+      }
+
+      .certificate {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background: #ffeb3b;
+        border-radius: 15px;
+        font-size: 22px;
+        color: #795548;
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      function checkAnswer(question, correctAnswer) {
+        let selected = document.querySelector(
+          `input[name="${question}"]:checked`
+        );
+        if (selected && selected.value === correctAnswer) {
+          selected.parentElement.style.backgroundColor = "#c8e6c9";
+        } else {
+          selected.parentElement.style.backgroundColor = "#ffcdd2";
+        }
+      }
+      function showCertificate() {
+        document.getElementById("certificate").style.display = "block";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>The Rescue of Max - Worksheet</h1>
+
+      <div class="story-box">
+        <p>
+          Sophie was walking home from school on a chilly autumn afternoon when
+          she heard a faint whimpering from behind a pile of leaves. Curiosity
+          piqued, she pushed aside the leaves and found a small, shivering dog
+          with a dirty coat. The dog looked up at her with big, sad eyes. Sophie
+          immediately knew she had to help. The dog had no collar or tags, so
+          Sophie decided to call him Max. She gently picked him up and wrapped
+          him in her warm scarf. Max was scared, but he slowly began to relax in
+          Sophie's arms. Sophie knew she couldn't just leave him there, so she
+          took him to her house.
+        </p>
+        <p>
+          At home, Sophie's parents were surprised to see her with a dog. They
+          quickly agreed to help Max. Sophie gave him a warm bath and a hearty
+          meal. Max's coat began to shine, and his tail wagged with happiness.
+          Sophie's parents made some calls and found that no one had reported a
+          missing dog matching Max's description. The next day, Sophie's family
+          took Max to the vet for a check-up. The vet confirmed that Max was
+          healthy but had been neglected. Sophie felt a surge of happiness
+          knowing she had made a difference. Over time, Max became a beloved
+          member of the family. Sophie learned that even small acts of kindness
+          could change a life, and Max's grateful eyes were a daily reminder of
+          her brave rescue.
+        </p>
+      </div>
+
+      <div class="question">
+        <p>1. What did Sophie hear behind the pile of leaves?</p>
+        <label><input type="radio" name="q1" value="a" /> a) A cat</label><br />
+        <label><input type="radio" name="q1" value="b" /> b) A dog</label><br />
+        <label><input type="radio" name="q1" value="c" /> c) A bird</label
+        ><br />
+        <label><input type="radio" name="q1" value="d" /> d) A rabbit</label
+        ><br />
+        <button onclick="checkAnswer('q1', 'b')">Submit</button>
+      </div>
+
+      <div class="question">
+        <p>2. What did Sophie do when she found the dog?</p>
+        <label
+          ><input type="radio" name="q2" value="a" /> a) She left it
+          there</label
+        ><br />
+        <label
+          ><input type="radio" name="q2" value="b" /> b) She wrapped it in her
+          scarf</label
+        ><br />
+        <label
+          ><input type="radio" name="q2" value="c" /> c) She took it to the
+          vet</label
+        ><br />
+        <label
+          ><input type="radio" name="q2" value="d" /> d) She gave it to a
+          friend</label
+        ><br />
+        <button onclick="checkAnswer('q2', 'b')">Submit</button>
+      </div>
+
+      <div class="question">
+        <p>3. Why did Sophie's parents help Max?</p>
+        <label
+          ><input type="radio" name="q3" value="a" /> a) They were
+          surprised</label
+        ><br />
+        <label
+          ><input type="radio" name="q3" value="b" /> b) They wanted to keep
+          him</label
+        ><br />
+        <label
+          ><input type="radio" name="q3" value="c" /> c) They were
+          unhappy</label
+        ><br />
+        <label
+          ><input type="radio" name="q3" value="d" /> d) They knew no one wanted
+          him</label
+        ><br />
+        <button onclick="checkAnswer('q3', 'b')">Submit</button>
+      </div>
+
+      <div class="question">
+        <p>4. What did Sophie learn from helping Max?</p>
+        <label
+          ><input type="radio" name="q4" value="a" /> a) Dogs are not
+          friendly</label
+        ><br />
+        <label
+          ><input type="radio" name="q4" value="b" /> b) Small acts of kindness
+          can change a life</label
+        ><br />
+        <label
+          ><input type="radio" name="q4" value="c" /> c) It is better to ignore
+          stray animals</label
+        ><br />
+        <button onclick="checkAnswer('q4', 'b')">Submit</button>
+      </div>
+
+      <div class="question">
+        <p>5. What is the purpose of this story?</p>
+        <label
+          ><input type="radio" name="q5" value="a" /> a) To show how to train
+          dogs</label
+        ><br />
+        <label
+          ><input type="radio" name="q5" value="b" /> b) To teach about the
+          importance of kindness and helping others</label
+        ><br />
+        <label
+          ><input type="radio" name="q5" value="c" /> c) To explain how to find
+          lost pets</label
+        ><br />
+        <label
+          ><input type="radio" name="q5" value="d" /> d) To describe a dog's
+          daily life</label
+        ><br />
+        <button onclick="checkAnswer('q5', 'b')">Submit</button>
+      </div>
+
+      <button onclick="showCertificate()">Finish & Get Certificate</button>
+
+      <div id="certificate" class="certificate">
+        🎉 Congratulations! You have completed The Rescue of Max worksheet! 🎉
+      </div>
+    </div>
+  </body>
+</html>
