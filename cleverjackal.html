@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Blue Jackal - Worksheet</title>
+    <style>
+      p,
+      label {
+        font-size: 20px; /* Keep text readable */
+        line-height: 2; /* Increase line spacing */
+        word-spacing: 4px; /* Adjust space between words */
+      }
+      body {
+        font-family: "Comic Sans MS", Arial, sans-serif; /* Fun and readable */
+        margin: 20px;
+        padding: 20px;
+        background-color: #f9f9f9;
+        text-align: center;
+      }
+
+      .container {
+        max-width: 800px;
+        background: white;
+        padding: 25px;
+        border-radius: 15px;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        margin: auto;
+      }
+
+      h1 {
+        font-size: 28px;
+        color: #ff5722; /* Fun orange color */
+      }
+
+      p {
+        font-size: 20px; /* Increase text size */
+        line-height: 1.8; /* More spacing for easy reading */
+      }
+
+      .story-box {
+        background: #fff3cd;
+        padding: 20px;
+        border-radius: 15px;
+        border: 2px solid #ffeeba;
+        text-align: left;
+        font-size: 20px; /* Bigger text */
+        color: #5d4037;
+        line-height: 2;
+      }
+
+      .question {
+        margin: 15px 0;
+        padding: 15px;
+        background: #e1f5fe;
+        border-radius: 10px;
+        font-size: 20px;
+      }
+
+      label {
+        font-size: 18px;
+        display: block;
+        margin: 5px 0;
+      }
+
+      button {
+        margin-top: 15px;
+        padding: 12px 20px;
+        font-size: 18px;
+        background: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #388e3c;
+      }
+
+      .certificate {
+        display: none;
+        margin-top: 20px;
+        padding: 20px;
+        background: #ffeb3b;
+        border-radius: 15px;
+        font-size: 22px;
+        color: #795548;
+        font-weight: bold;
+      }
+    </style>
+    <script>
+      function checkAnswer(question, correctAnswer) {
+        let selected = document.querySelector(
+          `input[name="${question}"]:checked`
+        );
+        if (selected && selected.value === correctAnswer) {
+          selected.parentElement.style.backgroundColor = "#c8e6c9";
+        } else {
+          selected.parentElement.style.backgroundColor = "#ffcdd2";
+        }
+      }
+      function showCertificate() {
+        document.getElementById("certificate").style.display = "block";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>The Blue Jackal - Worksheet</h1>
+
+      <div class="story-box">
+        <p>
+          A clever jackal once accidentally fell into a drum of blue dye. When
+          he emerged, he was entirely blue! When he reached the jungle, the
+          other animals, amazed by his unusual appearance and a little afraid of
+          him, made him king. The jackal enjoyed pretending to be the king, he
+          loved the power and respect that came with the role. However, the
+          truth was eventually revealed when the jackal forgot himself and
+          started calling in his real voice, revealing himself to be a fraud.
+        </p>
+        <p>
+          The animals chased him out of the forest and the blue jackal's lies
+          were exposed.
+        </p>
+      </div>
+
+      <div class="question">
+        <p>1. Why did the other animals believe the jackal was a king?</p>
+        <label
+          ><input type="radio" name="q1" value="a" /> a) Because he was stronger
+          than them.</label
+        ><br />
+        <label
+          ><input type="radio" name="q1" value="b" /> b) Because he looked
+          different and impressive in his new blue colour.</label
+        ><br />
+        <label
+          ><input type="radio" name="q1" value="c" /> c) Because he was the
+          smartest animal in the jungle.</label
+        ><br />
+        <label
+          ><input type="radio" name="q1" value="d" /> d) Because he could speak
+          their language.</label
+        ><br />
+        <button onclick="checkAnswer('q1', 'b')">Submit</button>
+      </div>
+
+      <div class="question">
+        <p>2. What does the jackal learn?</p>
+        <label
+          ><input type="radio" name="q2" value="a" /> a) Lying can only work for
+          a short time.</label
+        ><br />
+        <label
+          ><input type="radio" name="q2" value="b" /> b) It's okay to
+          pretend.</label
+        ><br />
+        <label
+          ><input type="radio" name="q2" value="c" /> c) Being a king is
+          easy.</label
+        ><br />
+        <label
+          ><input type="radio" name="q2" value="d" /> d) Looking different helps
+          you rule.</label
+        ><br />
+        <button onclick="checkAnswer('q2', 'a')">Submit</button>
+      </div>
+
+      <div class="question">
+        <p>3. Why was the jackal caught?</p>
+        <label
+          ><input type="radio" name="q3" value="a" /> a) He couldn't sound like
+          a lion.</label
+        ><br />
+        <label
+          ><input type="radio" name="q3" value="b" /> b) He made a jackal
+          sound.</label
+        ><br />
+        <label
+          ><input type="radio" name="q3" value="c" /> c) His blue colour
+          disappeared.</label
+        ><br />
+        <label
+          ><input type="radio" name="q3" value="d" /> d) Animals saw him talk to
+          people.</label
+        ><br />
+        <button onclick="checkAnswer('q3', 'b')">Submit</button>
+      </div>
+
+      <div class="question">
+        <p>4. What is the story about?</p>
+        <label
+          ><input type="radio" name="q4" value="a" /> a) Being yourself is
+          best.</label
+        ><br />
+        <label
+          ><input type="radio" name="q4" value="b" /> b) Changing how you look
+          is good.</label
+        ><br />
+        <label
+          ><input type="radio" name="q4" value="c" /> c) Jackals are bad.</label
+        ><br />
+        <label
+          ><input type="radio" name="q4" value="d" /> d) Kings must look
+          special.</label
+        ><br />
+        <button onclick="checkAnswer('q4', 'a')">Submit</button>
+      </div>
+
+      <div class="question">
+        <p>5. Can the jackal be king forever?</p>
+        <label><input type="radio" name="q5" value="a" /> a) Yes</label><br />
+        <label><input type="radio" name="q5" value="b" /> b) No</label><br />
+        <button onclick="checkAnswer('q5', 'b')">Submit</button>
+      </div>
+
+      <button onclick="showCertificate()">Finish & Get Certificate</button>
+
+      <div id="certificate" class="certificate">
+        🎉 Congratulations! You have completed The Blue Jackal worksheet! 🎉
+      </div>
+    </div>
+  </body>
+</html>
