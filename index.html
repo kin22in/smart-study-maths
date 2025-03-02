@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .nav-card {
+.nav-card {
     display: flex;
     justify-content: center;
     gap: 20px;
@@ -12,50 +12,72 @@
 }
 
 .card {
-    width: 200px;
-    padding: 15px;
+    width: 220px;
+    padding: 20px;
     text-align: center;
     background: white;
     border-radius: 10px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     transition: 0.3s;
+    position: relative;
 }
 
 .card:hover {
-    transform: translateY(-5px); /* Hover effect */
+    transform: translateY(-5px);
     box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
 }
 
+/* Make the entire card clickable */
 .card a {
     text-decoration: none;
     font-size: 18px;
     font-weight: bold;
     color: #333;
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+}
+
+/* Add text styling inside the card */
+.card-content {
+    position: relative;
+    z-index: 1;
 }
 
 .card p {
     font-size: 14px;
     color: #666;
+    margin-top: 5px;
 }
-
     </style>
 </head>
 <body>
     
 <div class="nav-card">
-    <div class="card">
-        <a href="currency.html">💰 Currency</a>
-        <p>Explore different types of money</p>
-    </div>
-    <div class="card">
-        <a href="reading-rescue-of-max.html">📖 Rescue of Max</a>
-        <p>A heartwarming rescue story</p>
-    </div>
-    <div class="card">
-        <a href="cleverjackal.html">🦊 The Clever Jackal</a>
-        <p>A story about wisdom and wit</p>
-    </div>
+    <a href="currency.html" class="card">
+        <div class="card-content">
+            <h3>💰 Currency</h3>
+            <p>Explore different types of money</p>
+        </div>
+    </a>
+    <a href="reading-rescue-of-max.html" class="card">
+        <div class="card-content">
+            <h3>📖 Rescue of Max</h3>
+            <p>A heartwarming rescue story</p>
+        </div>
+    </a>
+    <a href="cleverjackal.html" class="card">
+        <div class="card-content">
+            <h3>🦊 The Clever Jackal</h3>
+            <p>A story about wisdom and wit</p>
+        </div>
+    </a>
 </div>
+
 
 
 </body>
