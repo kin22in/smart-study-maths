@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Line Matching Game</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leader-line/1.0.7/leader-line.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { display: flex; justify-content: center; gap: 50px; margin-top: 20px; position: relative; }
+        .column { display: flex; flex-direction: column; gap: 15px; }
+        .item { padding: 10px; background: lightblue; cursor: pointer; border-radius: 5px; border: 1px solid #000; }
+        .item.selected { background: lightcoral; }
+        .delete-btn { margin-top: 20px; padding: 10px; background: red; color: white; border: none; cursor: pointer; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <h2>Match Causes with Effects</h2>
+    <div class="container">
+        <div class="column" id="causes">
+            <div class="item" id="cause1">1. The boy forgot to wear his raincoat</div>
+            <div class="item" id="cause2">2. Sarah planted sunflower seeds in the garden.</div>
+            <div class="item" id="cause3">3. The dog dug a hole in the backyard.</div>
+            <div class="item" id="cause4">4. Emily stayed up late reading her book.</div>
+            <div class="item" id="cause5">5. The cat knocked over the glass of milk.</div>
+            <div class="item" id="cause6">6. The ice cream was left outside in the sun.</div>
+            <div class="item" id="cause7">7. Tim's kite got caught in the tree.</div>
+            <div class="item" id="cause8">8. The baby laughed at the funny clown.</div>
+            <div class="item" id="cause9">9. The girl watered the plants every day.</div>
+            <div class="item" id="cause10">10. The wind blew very strongly.</div>
+        </div>
+        <div class="column" id="effects">
+            <div class="item" id="effect1">a) The glass of milk spilled on the floor.</div>
+            <div class="item" id="effect2">b) The plants grew tall and healthy.</div>
+            <div class="item" id="effect3">c) The boy got wet in the rain.</div>
+            <div class="item" id="effect4">d) The dog found a bone.</div>
+            <div class="item" id="effect5">e) The ice cream melted.</div>
+            <div class="item" id="effect6">f) Tim couldn't get his kite down.</div>
+            <div class="item" id="effect7">g) The baby clapped her hands.</div>
+            <div class="item" id="effect8">h) Sarah's sunflowers began to grow.</div>
+            <div class="item" id="effect9">i) The tree branches swayed and leaves fell.</div>
+            <div class="item" id="effect10">j) Emily felt tired in the morning.</div>
+        </div>
+    </div>
+    <button class="delete-btn" onclick="clearLines()">Delete Last Line</button>
+
+    <script>
+        let selectedItem = null;
+        let lines = [];
+        let connections = [];
+        
+        document.querySelectorAll('.item').forEach(item => {
+            item.addEventListener('click', function() {
+                if (!selectedItem) {
+                    selectedItem = this;
+                    this.classList.add('selected');
+                } else {
+                    if (this.parentElement !== selectedItem.parentElement) {
+                        let line = new LeaderLine(selectedItem, this, { color: 'red', path: 'straight' });
+                        lines.push(line);
+                        connections.push({ from: selectedItem, to: this, line: line });
+                    }
+                    selectedItem.classList.remove('selected');
+                    selectedItem = null;
+                }
+            });
+        });
+        
+        function clearLines() {
+            if (connections.length > 0) {
+                let lastConnection = connections.pop();
+                lastConnection.line.remove();
+            }
+        }
+    </script>
+</body>
+</html>
