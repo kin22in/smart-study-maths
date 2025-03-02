@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun with Plural Nouns!</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 20px;
+            background-color: #f0f8ff;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ff6b88;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        .intro {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            border-radius: 15px;
+            padding: 15px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.2);
+        }
+        .card-title {
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+            color: white;
+            padding: 8px;
+            border-radius: 10px;
+            font-size: 1.2rem;
+        }
+        .card-content {
+            font-size: 1rem;
+        }
+        .rule {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+            font-size: 1.1rem;
+        }
+        .examples {
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 10px;
+            padding: 10px;
+        }
+        .example {
+            margin-bottom: 8px;
+            opacity: 0;
+            transition: opacity 0.5s;
+            display: flex;
+            justify-content: space-between;
+        }
+        .example-singular, .example-plural {
+            flex: 1;
+            text-align: center;
+        }
+        .example-arrow {
+            flex: 0.5;
+            text-align: center;
+            color: #ff6b88;
+            font-weight: bold;
+        }
+        .active .example {
+            opacity: 1;
+        }
+        
+        .practice-area {
+            margin-top: 30px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 6px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .practice-question {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            width: 150px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+        }
+        button {
+            background-color: #ff6b88;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff4d73;
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            min-height: 30px;
+        }
+        .correct {
+            color: #4CAF50;
+        }
+        .incorrect {
+            color: #f44336;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f44336;
+            border-radius: 50%;
+            animation: fall 3s ease-in infinite;
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Color themes for each card */
+        .regular-nouns { background-color: #8c9eff; }
+        .ch-sh-s-x-z { background-color: #64b5f6; }
+        .f-fe { background-color: #4dd0e1; }
+        .vowel-o { background-color: #4db6ac; }
+        .consonant-o { background-color: #81c784; }
+        .irregular { background-color: #ffb74d; }
+        .vowel-y { background-color: #ffd54f; }
+        .consonant-y { background-color: #ff8a65; }
+        .no-change { background-color: #f48fb1; }
+    </style>
+</head>
+<body>
+    <h1>Fun with Plural Nouns!</h1>
+    
+    <div class="intro">
+        <p>Click on each card to see examples of different plural noun rules!</p>
+    </div>
+    
+    <div class="grid-container">
+        <!-- Card 1: Regular Nouns -->
+        <div class="card" style="background-color: #e3f2fd;" onclick="toggleExamples(this)">
+            <div class="card-title regular-nouns">REGULAR NOUNS</div>
+            <div class="card-content">
+                <p class="rule">Add -S</p>
+                <div class="examples">
+                    <div class="example"><span class="example-singular">car</span><span class="example-arrow">→</span><span class="example-plural">cars</span></div>
+                    <div class="example"><span class="example-singular">cat</span><span class="example-arrow">→</span><span class="example-plural">cats</span></div>
+                    <div class="example"><span class="example-singular">house</span><span class="example-arrow">→</span><span class="example-plural">houses</span></div>
+                    <div class="example"><span class="example-singular">rat</span><span class="example-arrow">→</span><span class="example-plural">rats</span></div>
+                    <div class="example"><span class="example-singular">toy</span><span class="example-arrow">→</span><span class="example-plural">toys</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 2: Ends in CH, SH, S, X or Z -->
+        <div class="card" style="background-color: #e1f5fe;" onclick="toggleExamples(this)">
+            <div class="card-title ch-sh-s-x-z">ENDS IN CH, SH, S, X or Z</div>
+            <div class="card-content">
+                <p class="rule">Add -ES</p>
+                <div class="examples">
+                    <div class="example"><span class="example-singular">blitz</span><span class="example-arrow">→</span><span class="example-plural">blitzes</span></div>
+                    <div class="example"><span class="example-singular">box</span><span class="example-arrow">→</span><span class="example-plural">boxes</span></div>
+                    <div class="example"><span class="example-singular">bus</span><span class="example-arrow">→</span><span class="example-plural">buses</span></div>
+                    <div class="example"><span class="example-singular">bush</span><span class="example-arrow">→</span><span class="example-plural">bushes</span></div>
+                    <div class="example"><span class="example-singular">watch</span><span class="example-arrow">→</span><span class="example-plural">watches</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 3: Ends in F or FE -->
+        <div class="card" style="background-color: #e0f7fa;" onclick="toggleExamples(this)">
+            <div class="card-title f-fe">ENDS IN F or FE</div>
+            <div class="card-content">
+                <p class="rule">Remove F/FE, Add -VES</p>
+                <div class="examples">
+                    <div class="example"><span class="example-singular">knife</span><span class="example-arrow">→</span><span class="example-plural">knives</span></div>
+                    <div class="example"><span class="example-singular">life</span><span class="example-arrow">→</span><span class="example-plural">lives</span></div>
+                    <div class="example"><span class="example-singular">shelf</span><span class="example-arrow">→</span><span class="example-plural">shelves</span></div>
+                    <div class="example"><span class="example-singular">wife</span><span class="example-arrow">→</span><span class="example-plural">wives</span></div>
+                    <div class="example"><span class="example-singular">wolf</span><span class="example-arrow">→</span><span class="example-plural">wolves</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 4: Ends in Vowel + O -->
+        <div class="card" style="background-color: #e0f2f1;" onclick="toggleExamples(this)">
+            <div class="card-title vowel-o">ENDS IN VOWEL + O</div>
+            <div class="card-content">
+                <p class="rule">Add -S</p>
+                <div class="examples">
+                    <div class="example"><span class="example-singular">embryo</span><span class="example-arrow">→</span><span class="example-plural">embryos</span></div>
+                    <div class="example"><span class="example-singular">radio</span><span class="example-arrow">→</span><span class="example-plural">radios</span></div>
+                    <div class="example"><span class="example-singular">stereo</span><span class="example-arrow">→</span><span class="example-plural">stereos</span></div>
+                    <div class="example"><span class="example-singular">video</span><span class="example-arrow">→</span><span class="example-plural">videos</span></div>
+                    <div class="example"><span class="example-singular">zoo</span><span class="example-arrow">→</span><span class="example-plural">zoos</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 5: Ends in Consonant + O -->
+        <div class="card" style="background-color: #e8f5e9;" onclick="toggleExamples(this)">
+            <div class="card-title consonant-o">ENDS IN CONSONANT + O</div>
+            <div class="card-content">
+                <p class="rule">Add -ES</p>
+                <div class="examples">
+                    <div class="example"><span class="example-singular">hero</span><span class="example-arrow">→</span><span class="example-plural">heroes</span></div>
+                    <div class="example"><span class="example-singular">potato</span><span class="example-arrow">→</span><span class="example-plural">potatoes</span></div>
+                    <div class="example"><span class="example-singular">tomato</span><span class="example-arrow">→</span><span class="example-plural">tomatoes</span></div>
+                    <div class="example"><span class="example-singular">photo</span><span class="example-arrow">→</span><span class="example-plural">photos (exception)</span></div>
+                    <div class="example"><span class="example-singular">piano</span><span class="example-arrow">→</span><span class="example-plural">pianos (exception)</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 6: Irregular Nouns -->
+        <div class="card" style="background-color: #fff3e0;" onclick="toggleExamples(this)">
+            <div class="card-title irregular">IRREGULAR NOUNS</div>
+            <div class="card-content">
+                <p class="rule">Special Changes</p>
+                <div class="examples">
+                    <div class="example"><span class="example-singular">child</span><span class="example-arrow">→</span><span class="example-plural">children</span></div>
+                    <div class="example"><span class="example-singular">foot</span><span class="example-arrow">→</span><span class="example-plural">feet</span></div>
+                    <div class="example"><span class="example-singular">goose</span><span class="example-arrow">→</span><span class="example-plural">geese</span></div>
+                    <div class="example"><span class="example-singular">man</span><span class="example-arrow">→</span><span class="example-plural">men</span></div>
+                    <div class="example"><span class="example-singular">mouse</span><span class="example-arrow">→</span><span class="example-plural">mice</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 7: Ends in Vowel + Y -->
+        <div class="card" style="background-color: #fffde7;" onclick="toggleExamples(this)">
+            <div class="card-title vowel-y">ENDS IN VOWEL + Y</div>
+            <div class="card-content">
+                <p class="rule">Add -S</p>
+                <div class="examples">
+                    <div class="example"><span class="example-singular">day</span><span class="example-arrow">→</span><span class="example-plural">days</span></div>
+                    <div class="example"><span class="example-singular">boy</span><span class="example-arrow">→</span><span class="example-plural">boys</span></div>
+                    <div class="example"><span class="example-singular">key</span><span class="example-arrow">→</span><span class="example-plural">keys</span></div>
+                    <div class="example"><span class="example-singular">toy</span><span class="example-arrow">→</span><span class="example-plural">toys</span></div>
+                    <div class="example"><span class="example-singular">guy</span><span class="example-arrow">→</span><span class="example-plural">guys</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 8: Ends in Consonant + Y -->
+        <div class="card" style="background-color: #fff8e1;" onclick="toggleExamples(this)">
+            <div class="card-title consonant-y">ENDS IN CONSONANT + Y</div>
+            <div class="card-content">
+                <p class="rule">Remove Y, Add -IES</p>
+                <div class="examples">
+                    <div class="example"><span class="example-singular">baby</span><span class="example-arrow">→</span><span class="example-plural">babies</span></div>
+                    <div class="example"><span class="example-singular">city</span><span class="example-arrow">→</span><span class="example-plural">cities</span></div>
+                    <div class="example"><span class="example-singular">fly</span><span class="example-arrow">→</span><span class="example-plural">flies</span></div>
+                    <div class="example"><span class="example-singular">lady</span><span class="example-arrow">→</span><span class="example-plural">ladies</span></div>
+                    <div class="example"><span class="example-singular">story</span><span class="example-arrow">→</span><span class="example-plural">stories</span></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Card 9: No Change -->
+        <div class="card" style="background-color: #fce4ec;" onclick="toggleExamples(this)">
+            <div class="card-title no-change">NO CHANGE</div>
+            <div class="card-content">
+                <p class="rule">Same in Singular & Plural</p>
+                <div class="examples">
+                    <div class="example"><span class="example-singular">fish</span><span class="example-arrow">→</span><span class="example-plural">fish</span></div>
+                    <div class="example"><span class="example-singular">fruit</span><span class="example-arrow">→</span><span class="example-plural">fruit</span></div>
+                    <div class="example"><span class="example-singular">sheep</span><span class="example-arrow">→</span><span class="example-plural">sheep</span></div>
+                    <div class="example"><span class="example-singular">species</span><span class="example-arrow">→</span><span class="example-plural">species</span></div>
+                    <div class="example"><span class="example-singular">swine</span><span class="example-arrow">→</span><span class="example-plural">swine</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="practice-area">
+        <h2>Practice Time!</h2>
+        <p class="practice-question">What is the plural form of: <span id="singular-word">cat</span>?</p>
+        <input type="text" id="answer-input" placeholder="Type your answer">
+        <button onclick="checkAnswer()">Check Answer</button>
+        <button onclick="newQuestion()">New Word</button>
+        <div class="result" id="result"></div>
+    </div>
+    
+    <script>
+        // Toggle examples visibility
+        function toggleExamples(card) {
+            card.classList.toggle('active');
+            
+            // If activating, make examples appear one by one
+            if (card.classList.contains('active')) {
+                const examples = card.querySelectorAll('.example');
+                examples.forEach((example, index) => {
+                    setTimeout(() => {
+                        example.style.opacity = 1;
+                    }, index * 200);
+                });
+            }
+        }
+        
+        // Practice functionality
+        const practiceWords = [
+            {singular: 'cat', plural: 'cats', rule: 'regular'},
+            {singular: 'dog', plural: 'dogs', rule: 'regular'},
+            {singular: 'box', plural: 'boxes', rule: 'ch-sh-s-x-z'},
+            {singular: 'dish', plural: 'dishes', rule: 'ch-sh-s-x-z'},
+            {singular: 'beach', plural: 'beaches', rule: 'ch-sh-s-x-z'},
+            {singular: 'wolf', plural: 'wolves', rule: 'f-fe'},
+            {singular: 'leaf', plural: 'leaves', rule: 'f-fe'},
+            {singular: 'radio', plural: 'radios', rule: 'vowel-o'},
+            {singular: 'video', plural: 'videos', rule: 'vowel-o'},
+            {singular: 'tomato', plural: 'tomatoes', rule: 'consonant-o'},
+            {singular: 'potato', plural: 'potatoes', rule: 'consonant-o'},
+            {singular: 'child', plural: 'children', rule: 'irregular'},
+            {singular: 'mouse', plural: 'mice', rule: 'irregular'},
+            {singular: 'toy', plural: 'toys', rule: 'vowel-y'},
+            {singular: 'baby', plural: 'babies', rule: 'consonant-y'},
+            {singular: 'fly', plural: 'flies', rule: 'consonant-y'},
+            {singular: 'sheep', plural: 'sheep', rule: 'no-change'},
+            {singular: 'fish', plural: 'fish', rule: 'no-change'}
+        ];
+        
+        let currentWord = practiceWords[0];
+        
+        function newQuestion() {
+            // Clear previous result
+            document.getElementById('result').textContent = '';
+            document.getElementById('result').className = 'result';
+            document.getElementById('answer-input').value = '';
+            
+            // Choose random word
+            currentWord = practiceWords[Math.floor(Math.random() * practiceWords.length)];
+            document.getElementById('singular-word').textContent = currentWord.singular;
+            
+            // Focus on input
+            document.getElementById('answer-input').focus();
+        }
+        
+        function checkAnswer() {
+            const userAnswer = document.getElementById('answer-input').value.trim().toLowerCase();
+            const correctAnswer = currentWord.plural.toLowerCase();
+            
+            if (userAnswer === correctAnswer) {
+                document.getElementById('result').textContent = 'Correct! Great job! 🎉';
+                document.getElementById('result').className = 'result correct';
+                createConfetti();
+                setTimeout(newQuestion, 2000);
+            } else {
+                document.getElementById('result').textContent = `Not quite. Try again or check the ${currentWord.rule} rule!`;
+                document.getElementById('result').className = 'result incorrect';
+            }
+        }
+        
+        function createConfetti() {
+            for (let i = 0; i < 30; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                
+                // Random position, color and delay
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                
+                document.body.appendChild(confetti);
+                
+                // Remove after animation
+                setTimeout(() => {
+                    confetti.remove();
+                }, 3000);
+            }
+        }
+        
+        // Allow pressing Enter to check answer
+        document.getElementById('answer-input').addEventListener('keyup', function(event) {
+            if (event.key === 'Enter') {
+                checkAnswer();
+            }
+        });
+        
+        // Initialize first question
+        newQuestion();
+        
+        // Make all cards active initially, then hide examples after delay
+        document.querySelectorAll('.card').forEach(card => {
+            card.classList.add('active');
+            
+            setTimeout(() => {
+                card.classList.remove('active');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
