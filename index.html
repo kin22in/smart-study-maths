@@ -3,10 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .nav-card {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.card {
+    width: 200px;
+    padding: 15px;
+    text-align: center;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px); /* Hover effect */
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.card a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+}
+
+    </style>
 </head>
 <body>
-    <a href="currency.html">Currency</a>
-    <a href="reading-rescue-of-max.html">reading-rescue-of-max</a>
+    
+<div class="nav-card">
+    <div class="card">
+        <a href="currency.html">💰 Currency</a>
+        <p>Explore different types of money</p>
+    </div>
+    <div class="card">
+        <a href="reading-rescue-of-max.html">📖 Rescue of Max</a>
+        <p>A heartwarming rescue story</p>
+    </div>
+    <div class="card">
+        <a href="cleverjackal.html">🦊 The Clever Jackal</a>
+        <p>A story about wisdom and wit</p>
+    </div>
+</div>
+
 
 </body>
 </html>
