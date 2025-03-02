@@ -15,44 +15,59 @@
     width: 220px;
     padding: 20px;
     text-align: center;
-    background: white;
+    background: url('jackal.jpg') no-repeat center/cover;
+    color: white;
     border-radius: 10px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
-    transition: 0.3s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     position: relative;
+    overflow: hidden;
 }
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 6px 6px 15px rgba(0, 0, 0, 0.4);
 }
 
-/* Make the entire card clickable */
+/* Overlay effect */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+    border-radius: 10px;
+}
+
+/* Make entire card clickable */
 .card a {
     text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
     display: block;
     width: 100%;
     height: 100%;
     position: absolute;
     top: 0;
     left: 0;
-    border-radius: 10px;
 }
 
-/* Add text styling inside the card */
+/* Text styling */
 .card-content {
     position: relative;
     z-index: 1;
 }
 
-.card p {
-    font-size: 14px;
-    color: #666;
-    margin-top: 5px;
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
 }
+
+.card p {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
     </style>
 </head>
 <body>
@@ -74,6 +89,13 @@
         <div class="card-content">
             <h3>🦊 The Clever Jackal</h3>
             <p>A story about wisdom and wit</p>
+        </div>
+    </a>
+    
+    <a href="ss-cause-effect.html" class="card">
+        <div class="card-content">
+            <h3>🔄 SS Cause & Effect</h3>
+            <p>Understand how actions lead to outcomes</p>
         </div>
     </a>
 </div>
